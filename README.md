@@ -43,6 +43,8 @@ FROM cte
 ) A
 WHERE rn =1
 ```
+
+```
 --which sub category had the highest growth of profit YoY 2022 vs 2023 
 
 WITH cte AS(
