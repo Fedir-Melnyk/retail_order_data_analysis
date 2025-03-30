@@ -25,3 +25,43 @@ The original data was extracted from [Kaggle](https://www.kaggle.com/datasets/an
 - MoM growth for 2022 vs 2023?
 - Which category had the best sales - monthly?
 - Which sub category had the highest growth of profit YoY 2022 vs 2023?
+
+### Data Analysis
+```
+--which category had the best sales - monthly
+WITH cte AS(
+SELECT category
+	, FORMAT(order_date,'yyyy-MM') AS order_year_month
+	, SUM(final_price) as sales
+FROM df_orders
+GROUP BY category, FORMAT(order_date,'yyyy-MM')
+)
+SELECT * FROM (
+SELECT *
+	,ROW_NUMBER() OVER (PARTITION BY category ORDER BY sales DESC) AS rn
+FROM cte
+) A
+WHERE rn =1
+```
+--which sub category had the highest growth of profit YoY 2022 vs 2023 
+
+WITH cte AS(
+SELECT 
+	sub_category
+	,	year(order_date) AS date_year
+	,sum(final_price) AS sales
+FROM df_orders
+GROUP BY sub_category, year(order_date)
+	)
+,cte2 AS(
+SELECT sub_category
+	,SUM(CASE WHEN date_year=2022 THEN sales ELSE 0 END) AS sales_2022
+	,SUM(CASE WHEN date_year=2023 THEN sales ELSE 0 END) AS sales_2023
+FROM cte
+GROUP BY sub_category
+)
+SELECT *
+,(sales_2023 - sales_2022)/sales_2022*100
+FROM cte2
+ORDER BY (sales_2023 - sales_2022)/sales_2022*100 DESC
+```
