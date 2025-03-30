@@ -67,3 +67,9 @@ SELECT *
 FROM cte2
 ORDER BY (sales_2023 - sales_2022)/sales_2022*100 DESC
 ```
+### Results
+- We received top - 10 SKU's which were TOP10 regarding the sales data we have
+- We discovered which are top 5 SKU's by region regarding the sales data we have
+- Received the information of YoY profit movements divided monthly
+- Discovered what month was the best for each category
+- Determined which category had the largest month-to-month growth between years
