@@ -1,6 +1,8 @@
 # Retail Order Data Analysis
 ### Project Overview
 Project on retail sales analysis, extracting was done via API, preliminary cleaning in Jupyter Notebook and further uploading and analysis on Microsoft SQL Server.
+![image](https://github.com/user-attachments/assets/45095129-5093-4777-8967-fb57b662cb1c)
+
 
 ### Data Sources
 The original data was extracted from [Kaggle](https://www.kaggle.com/datasets/ankitbansal06/retail-orders)
